@@ -1,5 +1,6 @@
 #include <Arduino.h>
 
+//---Pin configs---
 uint8_t EXT_PIN = 5;               //PWM pin to extend the actuator
 uint8_t RET_PIN = 6;               //PWm pin to retract the actuator
 uint8_t PIN_R_ENABLE  = 7;         // enable R side (on the motor driver)
