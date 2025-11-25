@@ -15,7 +15,7 @@ volatile unsigned long lastPulseTime = 0;         // Time stamp of last pulse
 unsigned int trigDelay = 500;            // Delay bewteen pulse in microseconds
 long position = 0;                       //Position from pulse counted 
 long previousePosition = 0;              //Tracks previous position to see if the actuator is moving  
-const float conNum = 0.000285;           //The pulse per inch travel is 3500 -> conversion from pulse to inch 
+const float conNum = 0.00005901097;           //The pulse per inch travel is 16946 -> conversion from pulse to inch 
 
 
 //---Behavorial configs---
@@ -64,8 +64,9 @@ void loop() {
   Extend();
   do {
     previousePosition = position; // Set old position
+    noInterrupts();   //MAY NOT WORK 
     updatePosition(); // Set new position from pulse
-    
+    interrupts();
     if (millis() - prevTimer > 100) { //Print position ever 100ms
       prevTimer = millis();
       Serial.println(convertToInches(position));
@@ -79,8 +80,9 @@ void loop() {
   Retract();
   do {
     previousePosition = position; // Set old position
+    noInterrupts();
     updatePosition(); // Set new position from pulse
-    
+    interrupts();
     if (millis() - prevTimer > 100) { //Print position every 100ms
       prevTimer = millis();
       Serial.println(convertToInches(position));
@@ -162,7 +164,9 @@ void backHome(void) {
   Retract();
   do {
     previousePosition = position; // Set old position
+    noInterrupts();
     updatePosition(); // Set new position from pulse
+    interrupts();
   }while(position != previousePosition);
   Stop();
 }
