@@ -64,14 +64,13 @@ void loop() {
   Extend();
   do {
     previousePosition = position; // Set old position
-    noInterrupts();   //MAY NOT WORK 
     updatePosition(); // Set new position from pulse
-    interrupts();
     if (millis() - prevTimer > 100) { //Print position ever 100ms
       prevTimer = millis();
       Serial.println(convertToInches(position));
     }
   }while(position != previousePosition); //Stops because pulse has not changed, therefore, not moving.
+
   Stop(); // Stop since fully extended 
   delay(1000);
 
@@ -80,9 +79,7 @@ void loop() {
   Retract();
   do {
     previousePosition = position; // Set old position
-    noInterrupts();
     updatePosition(); // Set new position from pulse
-    interrupts();
     if (millis() - prevTimer > 100) { //Print position every 100ms
       prevTimer = millis();
       Serial.println(convertToInches(position));
@@ -164,9 +161,7 @@ void backHome(void) {
   Retract();
   do {
     previousePosition = position; // Set old position
-    noInterrupts();
     updatePosition(); // Set new position from pulse
-    interrupts();
   }while(position != previousePosition);
   Stop();
 }
