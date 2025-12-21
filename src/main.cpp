@@ -1,11 +1,11 @@
 #include <Arduino.h>
 
 //---Pin configs---
-uint8_t EXT_PIN = 5;               //PWM pin to extend the actuator
-uint8_t RET_PIN = 6;               //PWm pin to retract the actuator
-uint8_t PIN_R_ENABLE  = 7;         // enable R side (on the motor driver)
-uint8_t PIN_L_ENABLE  = 8;         // enable L side (on the motor driver)
-uint8_t ENCODER_A = 2;             //connected to channel A on encoder (for interrupt)
+#define EXT_PIN  5               //PWM pin to extend the actuator
+#define RET_PIN  6               //PWm pin to retract the actuator
+#define PIN_R_ENABLE 7         // enable R side (on the motor driver)
+#define PIN_L_ENABLE 8         // enable L side (on the motor driver)
+#define ENCODER_A  2             //connected to channel A on encoder (for interrupt)
 
 //---Program's Logic configs---
 bool atHome = 0;                         //Check if the actuator is fully retracted or not
